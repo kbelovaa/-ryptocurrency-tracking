@@ -1,0 +1,58 @@
+th, td {
+    border: 1px solid #4e4d4d;
+    border-left: 0;
+    border-right: 0;
+    padding: 5px;
+    text-align: right;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+
+    &__head {
+        color: rgb(255, 238, 141);
+    }
+
+    &__row {
+        cursor: pointer;
+    }
+
+    &__currency-ticker {
+        margin-left: 5px;
+        color: #959494;
+    }
+
+    &__percent_adding {
+        color: rgb(53, 234, 36);
+    }
+
+    &__percent_deleting {
+        color: rgb(255, 106, 106);
+    }
+}
+
+.btn-control {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+
+    &:hover {
+        background-color: #7d7b7b;
+    }
+
+    &_add {
+        background-color: transparent;
+        color: #fff;
+        border: 1px solid #fff;
+    }
+
+    &_delete {
+        background-color: #fff;
+        color: #000;
+        border: 1px solid #000;
+    }
+}
