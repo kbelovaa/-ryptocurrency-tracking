@@ -1,21 +1,18 @@
-import React from 'react'
+import React from 'react';
+import { useSelector } from 'react-redux/es/exports';
 
 export default function TopCurrencies() {
+  const currencies = useSelector(state => state.currencies.currencies.slice(0,3));
+
   return (
     <div className='top-currencies'>
       <ul className='top-currencies__list'>
-        <li className='top-currencies__item'>
-          <span className='top-currencies__ticker'>BTC</span>
-          <span className='top-currencies__price'>$23,954.45</span>
-        </li>
-        <li className='top-currencies__item'>
-          <span className='top-currencies__ticker'>ETH</span>
-          <span className='top-currencies__price'>$1,698.56</span>
-        </li>
-        <li className='top-currencies__item'>
-          <span className='top-currencies__ticker'>USDT</span>
-          <span className='top-currencies__price'>$1.00</span>
-        </li>
+        {currencies.map(currency => 
+          <li className='top-currencies__item'>
+            <span className='top-currencies__ticker'>{currency.symbol}</span>
+            <span className='top-currencies__price'>${Math.round(currency.priceUsd * 100) / 100}</span>
+          </li>
+        )}
       </ul>
     </div>
   )

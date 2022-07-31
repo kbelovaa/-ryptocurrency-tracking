@@ -1,19 +1,26 @@
-import React from 'react'
+import React from 'react';
 import ControlButton from './ControlButton'
 
-export default function CurrencyRow() {
+export default function CurrencyRow(props) {
+  const currency = props.currency;
+
   return (
     <tr className='table__row'>
       <td><ControlButton /></td>
-      <td>1</td>
-      <td><div className='table__cell'><span className='table__currency-name'>Bitcoin</span><span className='table__currency-ticker'>BTC</span></div></td>
-      <td>$6,929.82</td>
-      <td className='table__percent_deleting'>-0.81%</td>
-      <td>$7,175.07</td>
-      <td>$119,150,835,874.47</td>
-      <td>$2,927,959,461.18</td>
-      <td>17,193,925 BTC</td>
-      <td>21,000,000 BTC</td>
-    </tr>
+      <td>{currency.rank}</td>
+      <td>
+        <div className='table__cell'>
+          <span className='table__currency-name'>{currency.name}</span>
+          <span className='table__currency-ticker'>{currency.symbol}</span>
+        </div>
+      </td>
+      <td>${Math.round(currency.priceUsd * 100) / 100}</td>
+      <td className='table__percent_deleting'>${Math.round(currency.changePercent24Hr * 100) / 100}</td>
+      <td>${Math.round(currency.vwap24Hr * 100) / 100}</td>
+      <td>${Math.round(currency.marketCapUsd * 100) / 100}</td>
+      <td>${Math.round(currency.volumeUsd24Hr * 100) / 100}</td>
+      <td>{Math.round(currency.supply)} {currency.symbol}</td>
+      <td>{Math.round(currency.maxSupply)} {currency.symbol}</td>
+  </tr>
   )
 }

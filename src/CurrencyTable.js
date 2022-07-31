@@ -1,7 +1,15 @@
-import React from 'react'
-import CurrencyRow from './CurrencyRow'
+import React, { useEffect } from 'react';
+import { fetchCurrencies } from './asyncActions/currencies';
+import { useDispatch, useSelector } from 'react-redux/es/exports';
+import CurrencyRow from './CurrencyRow';
 
 export default function CurrencyTable() {
+  const dispatch = useDispatch();
+
+  useEffect(() => dispatch(fetchCurrencies()));
+
+  const currencies = useSelector(state => state.currencies.currencies);
+
   return (
     <div>
       <table className='table'>
@@ -20,8 +28,7 @@ export default function CurrencyTable() {
           </tr>
         </thead>
         <tbody>
-            <CurrencyRow />
-            rows
+            {currencies.map(currency => <CurrencyRow currency={currency} />)}
         </tbody>
       </table>
     </div>
