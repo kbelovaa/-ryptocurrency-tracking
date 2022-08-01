@@ -1,7 +1,7 @@
 import './Header.scss';
-import React from 'react'
-import PortfolioPrice from './PortfolioPrice'
-import TopCurrencies from './TopCurrencies'
+import React from 'react';
+import PortfolioPrice from './PortfolioPrice';
+import TopCurrencies from './TopCurrencies';
 
 export default function Header() {
   return (

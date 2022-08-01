@@ -1,4 +1,5 @@
-import React from 'react'
+import './PortfolioPrice.scss';
+import React from 'react';
 
 export default function PortfolioPrice() {
   return (
