@@ -1,6 +1,5 @@
-import './Main.scss';
-import React from 'react'
-import CurrencyTable from './CurrencyTable'
+import React from 'react';
+import CurrencyTable from './CurrencyTable';
 
 export default function Main() {
   return (
