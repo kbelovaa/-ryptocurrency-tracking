@@ -1,0 +1,34 @@
+th,
+td {
+  border: 1px solid #4e4d4d;
+  border-left: 0;
+  border-right: 0;
+  padding: 5px;
+  text-align: right;
+}
+
+.portfolio {
+  &__content {
+    color: #000;
+    width: 600px;
+  }
+
+  &__name {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  &-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    &__currency-ticker {
+      margin-left: 5px;
+      color: #6e645b;
+    }
+  }
+
+  &__empty {
+    text-align: center;
+  }
+}
