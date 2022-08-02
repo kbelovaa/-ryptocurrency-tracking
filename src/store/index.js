@@ -5,8 +5,11 @@ import { portfolioReducer } from "./portfolioReducer";
 import { currenciesReducer } from "./currenciesReducer";
 
 const rootReducer = combineReducers({
-    addedCurrencies: portfolioReducer, 
-    currencies: currenciesReducer
-})
+  addedCurrencies: portfolioReducer,
+  currencies: currenciesReducer,
+});
 
-export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+export const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);

@@ -10,10 +10,17 @@ html {
 
 body {
   height: 100%;
-  background: rgb(36,36,38);
-  background: linear-gradient(42deg, rgba(36,36,38,1) 26%, rgba(57,53,39,1) 59%, rgba(107,94,41,1) 84%, rgba(185,151,9,1) 100%) no-repeat;
+  background: rgb(36, 36, 38);
+  background: linear-gradient(
+      42deg,
+      rgba(36, 36, 38, 1) 26%,
+      rgba(57, 53, 39, 1) 59%,
+      rgba(107, 94, 41, 1) 84%,
+      rgba(185, 151, 9, 1) 100%
+    )
+    no-repeat;
   color: #fff;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .container {

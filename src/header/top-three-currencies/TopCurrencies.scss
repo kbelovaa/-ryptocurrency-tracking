@@ -1,0 +1,24 @@
+.top-currencies {
+  &__list {
+    list-style-type: none;
+    display: flex;
+  }
+
+  &__item {
+    margin-left: 30px;
+
+    &:first-of-type {
+      margin-left: 0;
+    }
+  }
+
+  &__ticker {
+    margin-right: 10px;
+    color: #fff;
+  }
+
+  &__price {
+    font-size: 18px;
+    text-shadow: 1px 1px 0px #fffbcc;
+  }
+}
