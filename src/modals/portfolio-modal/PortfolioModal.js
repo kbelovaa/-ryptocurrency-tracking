@@ -33,7 +33,7 @@ export default function PortfolioModal(props) {
             {addedCurrencies.map((currency, index) => (
               <tr className="portfolio-table__row">
                 <td>
-                  <DeletingButton currencyId={currency.id} />
+                  <DeletingButton currency={currency} />
                 </td>
                 <td>{index + 1}</td>
                 <td>

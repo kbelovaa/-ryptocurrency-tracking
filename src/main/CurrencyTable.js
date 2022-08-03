@@ -19,7 +19,7 @@ export default function CurrencyTable() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div>
+    <div className="container">
       <table className="table">
         <thead className="table__head">
           <tr>

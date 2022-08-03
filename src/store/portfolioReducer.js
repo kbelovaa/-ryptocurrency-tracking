@@ -25,6 +25,7 @@ export const portfolioReducer = (state = defaultState, action) => {
             id: action.payload[0],
             quantity: action.payload[1],
             firstPrice: action.payload[2],
+            date: action.payload[3].getTime(),
           },
         ],
       };
@@ -32,7 +33,7 @@ export const portfolioReducer = (state = defaultState, action) => {
       return {
         ...state,
         addedCurrencies: state.addedCurrencies.filter(
-          (currency) => currency.id !== action.payload
+          (currency) => currency.date !== action.payload.date
         ),
       };
     default:

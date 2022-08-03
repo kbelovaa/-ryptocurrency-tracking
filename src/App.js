@@ -2,11 +2,10 @@ import "./App.scss";
 import React, { useEffect } from "react";
 import { fetchCurrencies } from "./store/asyncActions/getCurrencies";
 import { useDispatch } from "react-redux/es/exports";
-import ModalWindow from "./modals/ModalWindow";
-import CurrencyAddingModal from "./modals/input-modal/CurrencyAddingModal";
-import PortfolioModal from "./modals/portfolio-modal/PortfolioModal";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import CurrencyPage from "./currency-info-page/CurrencyPage";
 import Header from "./header/Header";
-import Main from "./main/Main";
+import CurrencyTable from "./main/CurrencyTable";
 
 function App() {
   const dispatch = useDispatch();
@@ -14,10 +13,15 @@ function App() {
 
   return (
     <div>
-      <Header />
-      <Main />
-      <ModalWindow id="adding-modal" content={<CurrencyAddingModal />} />
-      <ModalWindow id="portfolio-modal" content={<PortfolioModal />} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Header />}>
+            <Route index element={<CurrencyTable />} />
+            <Route path="currency/:id" element={<CurrencyPage />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
