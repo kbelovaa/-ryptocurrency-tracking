@@ -10,13 +10,14 @@ export default function DeletingButton(props) {
     (state) => state.addedCurrencies.addedCurrencies
   );
 
-  function deleteCurrency(currencyId) {
-    dispatch(deleteCurrencyAction(currencyId));
+  function deleteCurrency(currency) {
+    console.log(currency.date);
+    dispatch(deleteCurrencyAction(currency));
     localStorage.setItem(
       "selectedCurrencies",
       JSON.stringify(
         selectedCurrencies.filter(
-          (oneOfCurrency) => oneOfCurrency.id !== currencyId
+          (oneOfCurrency) => oneOfCurrency.date !== currency.date
         )
       )
     );
@@ -24,7 +25,7 @@ export default function DeletingButton(props) {
 
   return (
     <button
-      onClick={() => deleteCurrency(props.currencyId)}
+      onClick={() => deleteCurrency(props.currency)}
       className="btn-delete"
     >
       -

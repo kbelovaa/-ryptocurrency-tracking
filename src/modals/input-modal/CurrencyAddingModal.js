@@ -21,12 +21,18 @@ export default function CurrencyAddingModal() {
       const price = allCurrencies.find(
         (currency) => currency.id === temporaryChoice
       ).priceUsd;
-      dispatch(addCurrencyAction([temporaryChoice, number, price]));
+      const day = new Date();
+      dispatch(addCurrencyAction([temporaryChoice, number, price, day]));
       localStorage.setItem(
         "selectedCurrencies",
         JSON.stringify([
           ...selectedCurrencies,
-          { id: temporaryChoice, quantity: number, firstPrice: price },
+          {
+            id: temporaryChoice,
+            quantity: number,
+            firstPrice: price,
+            date: day.getTime(),
+          },
         ])
       );
     }
@@ -48,6 +54,7 @@ export default function CurrencyAddingModal() {
         className="adding__input"
         type="text"
         id="crypto-amount"
+        autoComplete="off"
       />
       <input className="adding__btn" type="submit" value="Add to portfolio" />
     </form>

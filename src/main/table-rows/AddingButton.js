@@ -1,7 +1,7 @@
 import "./AddingButton.scss";
 import React from "react";
 import { useDispatch } from "react-redux/es/exports";
-import { makeTemporaryChoiceAction } from "../../../store/portfolioReducer";
+import { makeTemporaryChoiceAction } from "../../store/portfolioReducer";
 
 export default function AddingButton(props) {
   const dispatch = useDispatch();
