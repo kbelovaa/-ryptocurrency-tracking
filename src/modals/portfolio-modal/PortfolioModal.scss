@@ -32,3 +32,42 @@ td {
     text-align: center;
   }
 }
+
+@media screen and (max-width: 1200px) {
+  .portfolio {
+    &__content {
+      width: 500px;
+    }
+
+    &__name {
+      font-size: 19px;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .portfolio {
+    &__content {
+      width: 400px;
+    }
+
+    &__name {
+      font-size: 17px;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .portfolio {
+    &__content {
+      width: 300px;
+    }
+
+    &__name {
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+  }
+}

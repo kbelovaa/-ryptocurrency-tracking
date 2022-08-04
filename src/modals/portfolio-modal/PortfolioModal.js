@@ -2,6 +2,7 @@ import "./PortfolioModal.scss";
 import React from "react";
 import { useSelector } from "react-redux/es/exports";
 import DeletingButton from "./DeletingButton";
+import { round } from "../../roundingFunctions";
 
 export default function PortfolioModal(props) {
   const addedCurrencies = useSelector(
@@ -55,27 +56,24 @@ export default function PortfolioModal(props) {
                   </div>
                 </td>
                 <td>{currency.quantity}</td>
-                <td>${Math.round(currency.firstPrice * 100) / 100}</td>
+                <td>${round(currency.firstPrice)}</td>
                 <td>
                   $
-                  {Math.round(
+                  {round(
                     allCurrencies.find(
                       (currencyObj) => currencyObj.id === currency.id
-                    ).priceUsd * 100
-                  ) / 100}
+                    ).priceUsd
+                  )}
                 </td>
                 <td>
                   $
-                  {Math.round(
-                    (Math.round(
+                  {round(
+                    round(
                       allCurrencies.find(
                         (currencyObj) => currencyObj.id === currency.id
-                      ).priceUsd * 100
-                    ) /
-                      100) *
-                      currency.quantity *
-                      100
-                  ) / 100}
+                      ).priceUsd
+                    ) * currency.quantity
+                  )}
                 </td>
               </tr>
             ))}

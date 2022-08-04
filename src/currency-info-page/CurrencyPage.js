@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux/es/exports";
 import AddingButton from "../main/table-rows/AddingButton";
 import CurrencyChart from "./chart/CurrencyChart";
+import { round, convert } from "../roundingFunctions";
 
 export default function CurrencyPage() {
   const params = useParams();
@@ -20,25 +21,31 @@ export default function CurrencyPage() {
     return null;
   }
 
+  const screenWidth = window.screen.width;
+
   return (
     <div>
-      <button className="btn-back" onClick={() => navigate("/")}>
-        To main page
-      </button>
       <div className="container">
-        <table className="table">
-          <thead className="table__head">
+        <button className="btn-back" onClick={() => navigate("/")}>
+          To main page
+        </button>
+        <table className="table-currency">
+          <thead className="table-head">
             <tr>
-              <th></th>
-              <th>#</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>24h %</th>
-              <th>Avg Price (24h)</th>
-              <th>Market Cap</th>
-              <th>Volume</th>
-              <th>Circulating Supply</th>
-              <th>Max Supply</th>
+              <th className="table-head__btn"></th>
+              <th className="table-head__rank">#</th>
+              <th className="table-head__name">Name</th>
+              <th className="table-head__price">Price</th>
+              <th className="table-head__percent">24h %</th>
+              <th className="table-head__avgprice">
+                {screenWidth <= 600 ? "Avg Price" : "Avg Price (24h)"}
+              </th>
+              <th className="table-head__mcap">Market Cap</th>
+              <th className="table-head__volume">Volume</th>
+              <th className="table-head__supply">
+                {screenWidth <= 600 ? "C. Supply" : "Circulating Supply"}
+              </th>
+              <th className="table-head__maxsupply">Max Supply</th>
             </tr>
           </thead>
           <tbody>
@@ -49,13 +56,22 @@ export default function CurrencyPage() {
               <td>{currency.rank}</td>
               <td>
                 <div className="table__cell">
-                  <span className="table__currency-name">{currency.name}</span>
+                  {screenWidth > 600 && (
+                    <span className="table__currency-name">
+                      {currency.name}
+                    </span>
+                  )}
                   <span className="table__currency-ticker">
                     {currency.symbol}
                   </span>
                 </div>
               </td>
-              <td>${Math.round(currency.priceUsd * 100) / 100}</td>
+              <td>
+                $
+                {screenWidth <= 600
+                  ? convert(currency.priceUsd)
+                  : round(currency.priceUsd)}
+              </td>
               <td
                 className={
                   currency.changePercent24Hr.slice(0, 1) === "-"
@@ -63,16 +79,21 @@ export default function CurrencyPage() {
                     : "table__percent_adding"
                 }
               >
-                {Math.round(currency.changePercent24Hr * 100) / 100}%
-              </td>
-              <td>${Math.round(currency.vwap24Hr * 100) / 100}</td>
-              <td>${Math.round(currency.marketCapUsd * 100) / 100}</td>
-              <td>${Math.round(currency.volumeUsd24Hr * 100) / 100}</td>
-              <td>
-                {Math.round(currency.supply)} {currency.symbol}
+                {round(currency.changePercent24Hr)}%
               </td>
               <td>
-                {Math.round(currency.maxSupply)} {currency.symbol}
+                $
+                {screenWidth <= 600
+                  ? convert(currency.priceUsd)
+                  : round(currency.vwap24Hr)}
+              </td>
+              <td>${convert(currency.marketCapUsd)}</td>
+              <td>${convert(currency.volumeUsd24Hr)}</td>
+              <td>
+                {convert(currency.supply)} {currency.symbol}
+              </td>
+              <td>
+                {convert(currency.maxSupply)} {currency.symbol}
               </td>
             </tr>
           </tbody>

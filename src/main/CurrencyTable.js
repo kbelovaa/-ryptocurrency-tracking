@@ -1,12 +1,17 @@
 import "./CurrencyTable.scss";
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux/es/exports";
 import CurrencyRows from "./table-rows/CurrencyRows";
 import Pagination from "./pagination/Pagination";
+import { useParams } from "react-router-dom";
 
-export default function CurrencyTable() {
+export default function CurrencyTable(props) {
+  const params = useParams();
+  let currentPage = [
+    params.num === undefined ? Number(props.currentPage) : params.num,
+  ];
+
   const currencies = useSelector((state) => state.currencies.currencies);
-  const [currentPage, setCurrentPage] = useState(1);
 
   const currenciesPerPage = 10;
   const lastCurrencyIndex = currentPage * currenciesPerPage;
@@ -16,23 +21,25 @@ export default function CurrencyTable() {
     lastCurrencyIndex
   );
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
   return (
     <div className="container">
       <table className="table">
-        <thead className="table__head">
+        <thead className="table-head">
           <tr>
-            <th></th>
-            <th>#</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>24h %</th>
-            <th>Avg Price (24h)</th>
-            <th>Market Cap</th>
-            <th>Volume</th>
-            <th>Circulating Supply</th>
-            <th>Max Supply</th>
+            <th className="table-head__btn"></th>
+            <th className="table-head__rank">#</th>
+            <th className="table-head__name">Name</th>
+            <th className="table-head__price">Price</th>
+            <th className="table-head__percent">24h %</th>
+            <th className="table-head__avgprice">Avg Price (24h)</th>
+            <th className="table-head__mcap">Market Cap</th>
+            <th className="table-head__volume table__additional">Volume</th>
+            <th className="table-head__supply table__additional">
+              Circulating Supply
+            </th>
+            <th className="table-head__maxsupply table__additional">
+              Max Supply
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -42,7 +49,6 @@ export default function CurrencyTable() {
       <Pagination
         currenciesPerPage={currenciesPerPage}
         totalCurrencies={currencies.length}
-        paginate={paginate}
         currentPage={currentPage}
       />
     </div>

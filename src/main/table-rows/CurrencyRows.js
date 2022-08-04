@@ -2,6 +2,7 @@ import "./CurrencyRows.scss";
 import React from "react";
 import AddingButton from "./AddingButton";
 import { Link } from "react-router-dom";
+import { round, convert } from "../../roundingFunctions";
 
 export default function CurrencyRows(props) {
   const currencies = props.currencies;
@@ -23,9 +24,7 @@ export default function CurrencyRows(props) {
         </div>
       </td>
       <td>
-        <Link to={`/currency/${currency.id}`}>
-          ${Math.round(currency.priceUsd * 100) / 100}
-        </Link>
+        <Link to={`/currency/${currency.id}`}>${round(currency.priceUsd)}</Link>
       </td>
       <td>
         <Link
@@ -36,32 +35,30 @@ export default function CurrencyRows(props) {
               : "table__percent_adding"
           }
         >
-          {Math.round(currency.changePercent24Hr * 100) / 100}%
+          {round(currency.changePercent24Hr)}%
         </Link>
       </td>
       <td>
-        <Link to={`/currency/${currency.id}`}>
-          ${Math.round(currency.vwap24Hr * 100) / 100}
-        </Link>
+        <Link to={`/currency/${currency.id}`}>${round(currency.vwap24Hr)}</Link>
       </td>
       <td>
         <Link to={`/currency/${currency.id}`}>
-          ${Math.round(currency.marketCapUsd * 100) / 100}
+          ${convert(currency.marketCapUsd)}
         </Link>
       </td>
-      <td>
+      <td className="table__additional">
         <Link to={`/currency/${currency.id}`}>
-          ${Math.round(currency.volumeUsd24Hr * 100) / 100}
+          ${convert(currency.volumeUsd24Hr)}
         </Link>
       </td>
-      <td>
+      <td className="table__additional">
         <Link to={`/currency/${currency.id}`}>
-          {Math.round(currency.supply)} {currency.symbol}
+          {convert(currency.supply)} {currency.symbol}
         </Link>
       </td>
-      <td>
+      <td className="table__additional">
         <Link to={`/currency/${currency.id}`}>
-          {Math.round(currency.maxSupply)} {currency.symbol}
+          {convert(currency.maxSupply)} {currency.symbol}
         </Link>
       </td>
     </tr>

@@ -1,6 +1,7 @@
 import "./CurrencyChart.scss";
 import React, { useEffect, useState } from "react";
 import "@progress/kendo-theme-material/dist/all.css";
+import { round } from "../../roundingFunctions";
 import "hammerjs";
 import {
   Chart,
@@ -22,22 +23,35 @@ export default function CurrencyChart(props) {
       `https://api.coincap.io/v2/assets/${props.currencyId}/history?interval=d1`
     )
       .then((responce) => responce.json())
-      .then((json) => setHistory(json.data.slice(-7)));
+      .then((json) => setHistory(json.data.slice(-25)));
   }, [props.currencyId]);
 
-  const info = history.map((data) => Math.round(data.priceUsd * 100) / 100);
-  const labels = history.map((data) => data.date.slice(0, 10));
+  const info = history.map((data) => round(data.priceUsd));
+  const labels = history.map((data) => data.date.slice(5, 10));
+
+  const screenWidth = window.screen.width;
 
   return (
     <div className="chart">
-      <Chart pannable>
-        <ChartTitle text="Сhart of changes for the last 7 days" />
+      <Chart
+        pannable
+        style={
+          screenWidth <= 900
+            ? screenWidth <= 600
+              ? { height: 200 }
+              : { height: 300 }
+            : {}
+        }
+      >
+        <ChartTitle text="Recent change chart" />
         <ChartLegend position="top" orientation="horizontal" />
         <ChartValueAxis>
           <ChartValueAxisItem />
         </ChartValueAxis>
         <ChartCategoryAxis>
-          <ChartCategoryAxisItem categories={labels} />
+          <ChartCategoryAxisItem
+            categories={screenWidth <= 900 ? [] : labels}
+          />
         </ChartCategoryAxis>
         <ChartSeries>
           <ChartSeriesItem

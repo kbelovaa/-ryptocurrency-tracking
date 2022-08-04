@@ -19,6 +19,7 @@ body {
       rgba(185, 151, 9, 1) 100%
     )
     no-repeat;
+  background-attachment: fixed;
   color: #fff;
   font-family: "Roboto", sans-serif;
 }
@@ -26,4 +27,44 @@ body {
 .container {
   width: 1080px;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 1200px) {
+  body {
+    font-size: 14px;
+  }
+
+  .container {
+    width: 870px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  body {
+    font-size: 12px;
+  }
+
+  .container {
+    width: 570px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    font-size: 9px;
+  }
+
+  .container {
+    width: 340px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  body {
+    font-size: 8px;
+  }
+
+  .container {
+    width: 90%;
+  }
 }

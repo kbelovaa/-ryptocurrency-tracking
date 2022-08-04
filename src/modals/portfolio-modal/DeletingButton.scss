@@ -15,3 +15,30 @@
     border: 1px solid #000;
   }
 }
+
+@media screen and (max-width: 1200px) {
+  .btn-delete {
+    width: 18px;
+    height: 18px;
+    font-size: 14px;
+    padding-bottom: 1px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .btn-delete {
+    width: 16px;
+    height: 16px;
+    font-size: 12px;
+    padding-bottom: 3px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .btn-delete {
+    width: 14px;
+    height: 14px;
+    font-size: 10px;
+    padding-bottom: 1px;
+  }
+}
