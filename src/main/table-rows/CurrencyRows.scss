@@ -25,3 +25,16 @@ td {
     color: rgb(255, 106, 106);
   }
 }
+
+@media screen and (max-width: 900px) {
+  td {
+    height: 40px;
+    padding: 3px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .table__additional {
+    display: none;
+  }
+}

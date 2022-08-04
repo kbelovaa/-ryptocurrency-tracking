@@ -1,6 +1,7 @@
 import "./TopCurrencies.scss";
 import React from "react";
 import { useSelector } from "react-redux/es/exports";
+import { round } from "../../roundingFunctions";
 
 export default function TopCurrencies() {
   const currencies = useSelector((state) =>
@@ -14,7 +15,7 @@ export default function TopCurrencies() {
           <li className="top-currencies__item">
             <span className="top-currencies__ticker">{currency.symbol}</span>
             <span className="top-currencies__price">
-              ${Math.round(currency.priceUsd * 100) / 100}
+              ${round(currency.priceUsd)}
             </span>
           </li>
         ))}

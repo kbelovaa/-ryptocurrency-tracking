@@ -1,5 +1,6 @@
 import "./Pagination.scss";
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Pagination(props) {
   const pageNumbers = [];
@@ -17,16 +18,16 @@ export default function Pagination(props) {
       <ul className="pagination">
         {pageNumbers.map((number) => (
           <li className="page" key={number}>
-            <button
+            <Link
+              to={`/${number}`}
               className={
-                number === props.currentPage
+                number === Number(props.currentPage)
                   ? "page__link page__link_current"
                   : "page__link"
               }
-              onClick={() => props.paginate(number)}
             >
               {number}
-            </button>
+            </Link>
           </li>
         ))}
       </ul>

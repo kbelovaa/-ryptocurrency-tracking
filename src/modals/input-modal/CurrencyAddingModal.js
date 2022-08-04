@@ -2,6 +2,7 @@ import "./CurrencyAddingModal.scss";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { addCurrencyAction } from "../../store/portfolioReducer";
+import { updateAddingModalStateAction } from "../../store/modalsReducer";
 
 export default function CurrencyAddingModal() {
   const [inputValue, setInputValue] = useState("");
@@ -37,7 +38,7 @@ export default function CurrencyAddingModal() {
       );
     }
     setInputValue("");
-    document.getElementById("adding-modal").classList.remove("active");
+    dispatch(updateAddingModalStateAction(false));
   }
 
   return (

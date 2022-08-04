@@ -1,8 +1,16 @@
 import "./PortfolioPrice.scss";
 import React from "react";
-import { useSelector } from "react-redux/es/exports";
+import { useSelector, useDispatch } from "react-redux";
+import { updatePortfolioModalStateAction } from "../../store/modalsReducer";
+import { round } from "../../roundingFunctions";
 
 export default function PortfolioPrice() {
+  const dispatch = useDispatch();
+
+  function openPortfolioModal() {
+    dispatch(updatePortfolioModalStateAction(true));
+  }
+
   const allCurrencies = useSelector((state) => state.currencies.currencies);
   const addedCurrencies = useSelector(
     (state) => state.addedCurrencies.addedCurrencies
@@ -23,44 +31,31 @@ export default function PortfolioPrice() {
   }
 
   const diff = totalPrice - firstPrice;
-  const percent = Math.round((diff / firstPrice) * 10000) / 100;
+  const percent = round((diff / firstPrice) * 100);
 
-  if (addedCurrencies.length !== 0) {
-    return (
-      <div
-        className="portfolio"
-        onClick={() =>
-          document.getElementById("portfolio-modal").classList.add("active")
-        }
-      >
-        <p className="portfolio__title">Your portfolio</p>
-        <span className="portfolio__price">
-          ${Math.round(totalPrice * 100) / 100}
-        </span>
-        <span
-          className={
-            diff >= 0
-              ? "portfolio__diff portfolio__diff_plus"
-              : "portfolio__diff portfolio__diff_minus"
-          }
-        >
-          {diff >= 0
-            ? `+${Math.round(diff * 100) / 100}`
-            : `${Math.round(diff * 100) / 100}`}{" "}
-          ({percent} %)
-        </span>
-      </div>
-    );
-  }
   return (
-    <div
-      className="portfolio"
-      onClick={() =>
-        document.getElementById("portfolio-modal").classList.add("active")
-      }
-    >
-      <p className="portfolio__title">Your portfolio</p>
-      <span className="portfolio__price portfolio__price_only">$0</span>
+    <div className="portfolio" onClick={() => openPortfolioModal()}>
+      {addedCurrencies.length !== 0 && (
+        <>
+          <p className="portfolio__title">Your portfolio</p>
+          <span className="portfolio__price">${round(totalPrice)}</span>
+          <span
+            className={
+              diff >= 0
+                ? "portfolio__diff portfolio__diff_plus"
+                : "portfolio__diff portfolio__diff_minus"
+            }
+          >
+            {diff >= 0 ? `+${round(diff)}` : `${round(diff)}`} ({percent} %)
+          </span>
+        </>
+      )}
+      {addedCurrencies.length === 0 && (
+        <>
+          <p className="portfolio__title">Your portfolio</p>
+          <span className="portfolio__price portfolio__price_only">$0</span>
+        </>
+      )}
     </div>
   );
 }

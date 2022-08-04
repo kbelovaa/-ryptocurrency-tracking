@@ -12,11 +12,12 @@ function App() {
   useEffect(() => dispatch(fetchCurrencies()), [dispatch]);
 
   return (
-    <div>
+    <div className="content">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Header />}>
-            <Route index element={<CurrencyTable />} />
+            <Route index element={<CurrencyTable currentPage="1" />} />
+            <Route path=":num" element={<CurrencyTable />} />
             <Route path="currency/:id" element={<CurrencyPage />} />
           </Route>
           <Route path="*" element={<Navigate to="/" />} />

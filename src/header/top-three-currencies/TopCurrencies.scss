@@ -22,3 +22,31 @@
     text-shadow: 1px 1px 0px #fffbcc;
   }
 }
+
+@media screen and (max-width: 1200px) {
+  .top-currencies__price {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .top-currencies__price {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .top-currencies {
+    &__price {
+      font-size: 12px;
+    }
+
+    &__list {
+      flex-direction: column;
+    }
+
+    &__item {
+      margin: 7px 0 0;
+    }
+  }
+}
