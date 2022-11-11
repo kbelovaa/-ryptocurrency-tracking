@@ -1,12 +1,12 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/pages/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle[hash].js",
-    chunkFilename: "[id].js",
     publicPath: "/",
   },
   devServer: {
@@ -14,6 +14,15 @@ module.exports = {
   },
   resolve: {
     extensions: [".js", ".jsx"],
+    alias: {
+      Assets: path.resolve(__dirname, 'src/assets/'),
+      Components: path.resolve(__dirname, 'src/components/'),
+      Constants: path.resolve(__dirname, 'src/constants/'),
+      Pages: path.resolve(__dirname, 'src/pages/'),
+      Services: path.resolve(__dirname, 'src/services/'),
+      Store: path.resolve(__dirname, 'src/store/'),
+      Utils: path.resolve(__dirname, 'src/utils/'),
+    }
   },
   module: {
     rules: [
@@ -42,5 +51,6 @@ module.exports = {
       filename: "index.html",
       inject: "body",
     }),
+    new CleanWebpackPlugin(),
   ],
 };

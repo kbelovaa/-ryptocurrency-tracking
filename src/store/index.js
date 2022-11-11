@@ -1,9 +1,9 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from "redux-thunk";
-import { portfolioReducer } from "./portfolioReducer";
-import { currenciesReducer } from "./currenciesReducer";
-import { modalsReducer } from "./modalsReducer";
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
+import portfolioReducer from 'Store/reducers/portfolioReducer';
+import currenciesReducer from 'Store/reducers/currenciesReducer';
+import modalsReducer from 'Store/reducers/modalsReducer';
 
 const rootReducer = combineReducers({
   addedCurrencies: portfolioReducer,
@@ -11,7 +11,6 @@ const rootReducer = combineReducers({
   modals: modalsReducer,
 });
 
-export const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(thunk))
-);
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+
+export default store;

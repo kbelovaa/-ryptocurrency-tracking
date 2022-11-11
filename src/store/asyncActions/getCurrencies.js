@@ -1,9 +1,10 @@
-import { uploadCurrenciesAction } from "../currenciesReducer";
+import { getCurrencies } from 'Services/requests';
+import uploadCurrenciesAction from 'Store/actions/currenciesActions';
 
-export const fetchCurrencies = () => {
-  return (dispatch) => {
-    fetch("https://api.coincap.io/v2/assets")
-      .then((responce) => responce.json())
-      .then((json) => dispatch(uploadCurrenciesAction(json.data)));
-  };
-};
+const fetchCurrencies = () => ((dispatch) => {
+  getCurrencies()
+    .then((responce) => responce.json())
+    .then((json) => dispatch(uploadCurrenciesAction(json.data)));
+});
+
+export default fetchCurrencies;
