@@ -51,8 +51,7 @@ const PortfolioModal = () => {
                 <td>
                   $
                   {round(
-                    round(allCurrencies.find((currencyObj) => currencyObj.id === currency.id).priceUsd)
-                    * currency.quantity
+                    round(allCurrencies.find((currencyObj) => currencyObj.id === currency.id).priceUsd) * currency.quantity
                   )}
                 </td>
               </tr>

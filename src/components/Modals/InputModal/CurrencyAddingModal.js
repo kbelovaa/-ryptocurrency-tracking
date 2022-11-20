@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCurrencyAction } from 'Store/actions/portfolioActions';
-import { updateAddingModalStateAction } from 'Store/actions/modalsActions';
+import Context from 'Utils/Context';
 import './CurrencyAddingModal.scss';
 
 const CurrencyAddingModal = () => {
   const [inputValue, setInputValue] = useState('');
+  const { setIsInputModalOpen } = useContext(Context);
 
   const dispatch = useDispatch();
   const selectedCurrencies = useSelector((state) => state.addedCurrencies.addedCurrencies);
@@ -32,7 +33,7 @@ const CurrencyAddingModal = () => {
       );
     }
     setInputValue('');
-    dispatch(updateAddingModalStateAction(false));
+    setIsInputModalOpen(false);
   };
 
   return (

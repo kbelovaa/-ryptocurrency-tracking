@@ -1,4 +1,4 @@
-import { UPLOAD_CURRENCIES } from '../../constants/actionsRedux';
+import { UPLOAD_CURRENCIES } from 'Constants/actionsRedux';
 
 const uploadCurrenciesAction = (payload) => ({
   type: UPLOAD_CURRENCIES,

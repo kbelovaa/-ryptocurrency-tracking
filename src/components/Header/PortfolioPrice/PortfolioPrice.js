@@ -1,15 +1,11 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { updatePortfolioModalStateAction } from 'Store/actions/modalsActions';
+import React, { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { round } from 'Utils/roundingFunctions';
+import Context from 'Utils/Context';
 import './PortfolioPrice.scss';
 
 const PortfolioPrice = () => {
-  const dispatch = useDispatch();
-
-  const openPortfolioModal = () => {
-    dispatch(updatePortfolioModalStateAction(true));
-  };
+  const { setIsPortfolioModalOpen } = useContext(Context);
 
   const allCurrencies = useSelector((state) => state.currencies.currencies);
   const addedCurrencies = useSelector((state) => state.addedCurrencies.addedCurrencies);
@@ -21,9 +17,7 @@ const PortfolioPrice = () => {
   }
 
   for (let i = 0; i < addedCurrencies.length; i += 1) {
-    totalPrice
-    += allCurrencies.find((currencyObj) => currencyObj.id === addedCurrencies[i].id).priceUsd
-    * addedCurrencies[i].quantity;
+    totalPrice += allCurrencies.find((currencyObj) => currencyObj.id === addedCurrencies[i].id).priceUsd * addedCurrencies[i].quantity;
     firstPrice += addedCurrencies[i].firstPrice * addedCurrencies[i].quantity;
   }
 
@@ -31,7 +25,7 @@ const PortfolioPrice = () => {
   const percent = round((diff / firstPrice) * 100);
 
   return (
-    <div className="portfolio" onClick={openPortfolioModal}>
+    <div className="portfolio" onClick={() => setIsPortfolioModalOpen(true)}>
       {addedCurrencies.length !== 0 && (
         <>
           <p className="portfolio__title">Your portfolio</p>

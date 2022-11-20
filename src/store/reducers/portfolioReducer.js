@@ -1,4 +1,4 @@
-import { MAKE_TEMPORARY_CHOICE, ADD_CURRENCY, DELETE_CURRENCY } from '../../constants/actionsRedux';
+import { MAKE_TEMPORARY_CHOICE, ADD_CURRENCY, DELETE_CURRENCY } from 'Constants/actionsRedux';
 
 const selectedCurrencies = localStorage.getItem('selectedCurrencies') !== null ? JSON.parse(localStorage.getItem('selectedCurrencies')) : [];
 

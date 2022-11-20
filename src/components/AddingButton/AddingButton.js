@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { makeTemporaryChoiceAction } from 'Store/actions/portfolioActions';
-import { updateAddingModalStateAction } from 'Store/actions/modalsActions';
+import Context from 'Utils/Context';
 import './AddingButton.scss';
 
 const AddingButton = ({ currency }) => {
   const dispatch = useDispatch();
 
+  const { setIsInputModalOpen } = useContext(Context);
+
   function markCurrency(currencyId) {
     dispatch(makeTemporaryChoiceAction(currencyId));
-    dispatch(updateAddingModalStateAction(true));
+    setIsInputModalOpen(true);
   }
 
   return (
