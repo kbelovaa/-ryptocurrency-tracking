@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import AddingButton from 'Components/AddingButton/AddingButton';
-import CurrencyChart from 'Components/CurrencyInfoPage/CurrencyChart/CurrencyChart';
+import CurrencyChart from 'Components/CurrencyPage/CurrencyChart/CurrencyChart';
 import { round, convert } from 'Utils/roundingFunctions';
 import './CurrencyPage.scss';
 

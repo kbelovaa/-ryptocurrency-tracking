@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import fetchCurrencies from 'Store/asyncActions/getCurrencies';
 import Header from 'Components/Header/Header';
-import CurrencyPage from 'Components/CurrencyInfoPage/CurrencyPage';
+import CurrencyPage from 'Components/CurrencyPage/CurrencyPage';
 import CurrenciesTable from 'Components/CurrenciesTable/CurrenciesTable';
 import './App.scss';
 

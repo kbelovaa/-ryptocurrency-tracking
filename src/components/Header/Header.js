@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import PortfolioPrice from 'Components/Header/PortfolioPrice/PortfolioPrice';
-import TopCurrencies from 'Components/Header/TopThreeCurrencies/TopCurrencies';
+import TopCurrencies from 'Components/Header/TopCurrencies/TopCurrencies';
 import ModalWindow from 'Components/Modals/ModalWindow';
-import CurrencyAddingModal from 'Components/Modals/InputModal/CurrencyAddingModal';
+import CurrencyAddingModal from 'Components/Modals/CurrencyAddingModal/CurrencyAddingModal';
 import PortfolioModal from 'Components/Modals/PortfolioModal/PortfolioModal';
 import Context from 'Utils/Context';
 import './Header.scss';

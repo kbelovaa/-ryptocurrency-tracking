@@ -30,7 +30,7 @@ const PortfolioModal = () => {
           </thead>
           <tbody>
             {addedCurrencies.map((currency, index) => (
-              <tr key={currency.id} className="portfolio-table__row">
+              <tr key={currency.id + index} className="portfolio-table__row">
                 <td>
                   <DeletingButton currency={currency} />
                 </td>
